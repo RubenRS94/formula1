@@ -43,9 +43,10 @@ body {
   font-family: var(--f-body);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: default;
+  cursor: none;
 }
-a { text-decoration: none; color: inherit; }
+a { text-decoration: none; color: inherit; cursor: none; }
+button { cursor: none; }
 img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 
@@ -226,11 +227,11 @@ ul { list-style: none; }
 }
 
 /* Nav */
-.nav { display: flex; align-items: center; gap: 2.2rem; }
+.nav { display: flex; align-items: center; gap: 2.6rem; }
 .nav a {
   font-family: var(--f-ui);
-  font-weight: 600; font-size: 0.8rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 600; font-size: 0.92rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--c-grey-l);
   position: relative;
   transition: color 0.3s;
@@ -285,7 +286,6 @@ ul { list-style: none; }
 #inicio {
   position: relative; min-height: 100vh;
   display: flex; align-items: center;
-  overflow: hidden;
 }
 
 .hero-bg {
@@ -413,9 +413,9 @@ ul { list-style: none; }
 
 /* Barra de marcas / validación social */
 .hero-ticker {
-  position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
   background: rgba(201,168,76,0.08);
   border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
   padding: 0.9rem 0; overflow: hidden;
 }
 .ticker-inner {
@@ -503,6 +503,7 @@ ul { list-style: none; }
 .about-img-wrap {
   position: relative; border-radius: 4px; overflow: hidden;
   background: var(--c-card);
+  aspect-ratio: 4/5;
 }
 .about-placeholder {
   width: 100%; aspect-ratio: 4/5;
@@ -655,7 +656,7 @@ ul { list-style: none; }
    ============================================= */
 #pilotos .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--c-border);
 }
 .skill-item {
@@ -754,7 +755,7 @@ ul { list-style: none; }
    METODOLOGÍA
    ============================================= */
 #metodologia .method-steps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 .method-step {
@@ -840,7 +841,7 @@ ul { list-style: none; }
    ============================================= */
 #equipo .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 .team-card {
@@ -968,7 +969,26 @@ ul { list-style: none; }
   position: absolute; top: -2rem; left: 1rem;
   pointer-events: none;
 }
-.stars { display: flex; gap: 4px; margin-bottom: 1.2rem; }
+.testimonial-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.google-badge {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--f-ui); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.08em; color: var(--c-grey);
+  opacity: 0.8;
+}
+.google-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+.verified-tag {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-family: var(--f-ui); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #4ade80; background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.2);
+  padding: 0.2rem 0.6rem; border-radius: 2px;
+}
+.stars { display: flex; gap: 4px; }
 .star { color: var(--c-gold); font-size: 0.9rem; }
 .testimonial-text {
   font-size: 0.92rem; color: var(--c-grey-l);
@@ -1270,6 +1290,9 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   #escuela .grid-2 { gap: 3rem; }
   #padres .parents-split { gap: 3rem; }
+  #pilotos .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  #metodologia .method-steps { grid-template-columns: repeat(3, 1fr); }
+  #equipo .team-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -1280,6 +1303,8 @@ ul { list-style: none; }
   .facility-card.main { grid-column: span 2; grid-row: auto; }
   .results-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
+  #metodologia .method-steps { grid-template-columns: repeat(2, 1fr); }
+  #equipo .team-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 700px) {
@@ -1295,6 +1320,9 @@ ul { list-style: none; }
   .form-row { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .about-pillars { grid-template-columns: 1fr; }
+  #pilotos .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  #metodologia .method-steps { grid-template-columns: 1fr; }
+  #equipo .team-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1325,10 +1353,9 @@ ul { list-style: none; }
       <a href="#escuela">La Escuela</a>
       <a href="#programas">Programas</a>
       <a href="#pilotos">Formación</a>
-      <a href="#padres">Para Padres</a>
       <a href="#metodologia">Metodología</a>
       <a href="#equipo">Equipo</a>
-      <a href="#admision">Admisión</a>
+      <a href="#resultados">Resultados</a>
     </nav>
 
     <div class="header-cta">
@@ -1423,26 +1450,27 @@ ul { list-style: none; }
 
   </div>
 
-  <!-- Ticker de validación social -->
-  <div class="hero-ticker">
-    <div class="ticker-inner" id="ticker">
-      <span class="ticker-item">✦ ESCUELA OFICIAL ASOCIADA A LA FIA</span>
-      <span class="ticker-item">✦ TECNOLOGÍA DE SIMULACIÓN NIVEL F1</span>
-      <span class="ticker-item">✦ 3 PILOTOS ACTUALES EN FORMULA UNO</span>
-      <span class="ticker-item">✦ CERTIFICACIÓN MOTORSPORT UK</span>
-      <span class="ticker-item">✦ RECONOCIDA POR FORMULA SCOUT</span>
-      <span class="ticker-item">✦ METODOLOGÍA ÚNICA EN EL MUNDO</span>
-      <span class="ticker-item">✦ INSTALACIONES DE NIVEL FIA GRADO 1</span>
-      <span class="ticker-item">✦ ESCUELA OFICIAL ASOCIADA A LA FIA</span>
-      <span class="ticker-item">✦ TECNOLOGÍA DE SIMULACIÓN NIVEL F1</span>
-      <span class="ticker-item">✦ 3 PILOTOS ACTUALES EN FORMULA UNO</span>
-      <span class="ticker-item">✦ CERTIFICACIÓN MOTORSPORT UK</span>
-      <span class="ticker-item">✦ RECONOCIDA POR FORMULA SCOUT</span>
-      <span class="ticker-item">✦ METODOLOGÍA ÚNICA EN EL MUNDO</span>
-      <span class="ticker-item">✦ INSTALACIONES DE NIVEL FIA GRADO 1</span>
-    </div>
-  </div>
 </section>
+
+<!-- Ticker de validación social -->
+<div class="hero-ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">✦ ESCUELA OFICIAL ASOCIADA A LA FIA</span>
+    <span class="ticker-item">✦ TECNOLOGÍA DE SIMULACIÓN NIVEL F1</span>
+    <span class="ticker-item">✦ 3 PILOTOS ACTUALES EN FORMULA UNO</span>
+    <span class="ticker-item">✦ CERTIFICACIÓN MOTORSPORT UK</span>
+    <span class="ticker-item">✦ RECONOCIDA POR FORMULA SCOUT</span>
+    <span class="ticker-item">✦ METODOLOGÍA ÚNICA EN EL MUNDO</span>
+    <span class="ticker-item">✦ INSTALACIONES DE NIVEL FIA GRADO 1</span>
+    <span class="ticker-item">✦ ESCUELA OFICIAL ASOCIADA A LA FIA</span>
+    <span class="ticker-item">✦ TECNOLOGÍA DE SIMULACIÓN NIVEL F1</span>
+    <span class="ticker-item">✦ 3 PILOTOS ACTUALES EN FORMULA UNO</span>
+    <span class="ticker-item">✦ CERTIFICACIÓN MOTORSPORT UK</span>
+    <span class="ticker-item">✦ RECONOCIDA POR FORMULA SCOUT</span>
+    <span class="ticker-item">✦ METODOLOGÍA ÚNICA EN EL MUNDO</span>
+    <span class="ticker-item">✦ INSTALACIONES DE NIVEL FIA GRADO 1</span>
+  </div>
+</div>
 
 
 <!-- =============================================
@@ -1454,9 +1482,7 @@ ul { list-style: none; }
 
       <div class="about-visual reveal-left">
         <div class="about-img-wrap">
-          <div class="about-placeholder">
-            <!-- Imagen: sustituir por <img src="tu-imagen.jpg" alt="APEX Racing Academy"> -->
-          </div>
+          <img src="https://i.pinimg.com/1200x/61/8c/77/618c77a987b9b0c5a1ac957309a451c0.jpg" alt="APEX Racing Academy — Piloto de élite" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="about-badge">
           <div class="about-badge-num">#1</div>
@@ -1920,12 +1946,15 @@ ul { list-style: none; }
     <div class="facilities-grid reveal">
 
       <div class="facility-card main">
+        <img src="https://i.pinimg.com/736x/4e/f0/17/4ef017fa5dba3e7f2ebbafcf53c487ed.jpg" alt="APEX HQ" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;z-index:0;">
+        <div style="position:relative;z-index:1;">
         <div class="facility-deco">
           <svg viewBox="0 0 24 24" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
         <div class="facility-num">// 01</div>
         <div class="facility-title">Centro Principal<br>APEX HQ</div>
         <div class="facility-desc">Nuestro cuartel general de 12.000 m² incluye boxes de competición, centro de simulación, gimnasio especializado, aulas técnicas, sala de debriefing y área de hospitality para familias. Un entorno diseñado para que cada detalle inspire excelencia.</div>
+        </div>
       </div>
 
       <div class="facility-card reveal delay-1">
@@ -1989,7 +2018,7 @@ ul { list-style: none; }
 
       <div class="team-card reveal delay-1">
         <div class="team-avatar">
-          <div class="team-avatar-letter">MR</div>
+          <img src="https://i.pinimg.com/1200x/d8/4c/01/d84c01f1c471060564709a0efbda250d.jpg" alt="Marco Reyes" style="width:100%;height:100%;object-fit:cover;display:block;">
           <div class="team-avatar-overlay"></div>
           <span class="team-flag">Director</span>
         </div>
@@ -2002,7 +2031,7 @@ ul { list-style: none; }
 
       <div class="team-card reveal delay-2">
         <div class="team-avatar">
-          <div class="team-avatar-letter">SB</div>
+          <img src="https://i.pinimg.com/1200x/c7/27/41/c727416df07ff68120d62fbc21dcff70.jpg" alt="Sophie Brunner" style="width:100%;height:100%;object-fit:cover;display:block;">
           <div class="team-avatar-overlay"></div>
           <span class="team-flag">Ingeniería</span>
         </div>
@@ -2015,33 +2044,7 @@ ul { list-style: none; }
 
       <div class="team-card reveal delay-3">
         <div class="team-avatar">
-          <div class="team-avatar-letter">DK</div>
-          <div class="team-avatar-overlay"></div>
-          <span class="team-flag">Mental</span>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Dr. Daniel Kwan</div>
-          <div class="team-role">Sports Psychologist</div>
-          <div class="team-bio">Psicólogo deportivo con 12 años de experiencia con atletas de élite. Especialista en gestión del estrés competitivo y rendimiento bajo presión.</div>
-        </div>
-      </div>
-
-      <div class="team-card reveal delay-4">
-        <div class="team-avatar">
-          <div class="team-avatar-letter">LV</div>
-          <div class="team-avatar-overlay"></div>
-          <span class="team-flag">Físico</span>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Lena Voss</div>
-          <div class="team-role">Head of Physical Performance</div>
-          <div class="team-bio">Preparadora física con experiencia en Fórmula E y WEC. Diseñadora de los protocolos de acondicionamiento cervical y de reacción de APEX.</div>
-        </div>
-      </div>
-
-      <div class="team-card reveal delay-5">
-        <div class="team-avatar">
-          <div class="team-avatar-letter">PT</div>
+          <img src="https://i.pinimg.com/736x/72/0a/e7/720ae7af28376e08f4eb7012ed0640ac.jpg" alt="Pietro Terzini" style="width:100%;height:100%;object-fit:cover;display:block;">
           <div class="team-avatar-overlay"></div>
           <span class="team-flag">Coach</span>
         </div>
@@ -2049,19 +2052,6 @@ ul { list-style: none; }
           <div class="team-name">Pietro Terzini</div>
           <div class="team-role">Lead Driver Coach</div>
           <div class="team-bio">7 temporadas en F3 European. Coach de 4 pilotos que han llegado a F1. Experto en técnica de pilotaje y desarrollo de estilo en monoplazas.</div>
-        </div>
-      </div>
-
-      <div class="team-card reveal delay-6">
-        <div class="team-avatar">
-          <div class="team-avatar-letter">AJ</div>
-          <div class="team-avatar-overlay"></div>
-          <span class="team-flag">Estrategia</span>
-        </div>
-        <div class="team-info">
-          <div class="team-name">Amara Jones</div>
-          <div class="team-role">Race Strategy Director</div>
-          <div class="team-bio">Ex estratega de pared de un equipo de F1. Especialista en formación táctica, lectura de carrera y desarrollo del instinto competitivo.</div>
         </div>
       </div>
 
@@ -2161,7 +2151,15 @@ ul { list-style: none; }
     <div class="testimonials-grid">
 
       <div class="testimonial-card reveal delay-1">
-        <div class="stars">★★★★★</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <!-- Google G logo SVG oficial -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
         <div class="testimonial-text">"Llegué a APEX con 13 años sin haber tocado un monoplaza. Cinco años después debuto en F3 Europea. Lo que viví aquí no tiene precio: el rigor, la exigencia, la tecnología y la forma en que creían en mí incluso cuando yo mismo dudaba."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">A</span></div>
@@ -2173,7 +2171,14 @@ ul { list-style: none; }
       </div>
 
       <div class="testimonial-card reveal delay-2">
-        <div class="stars">★★★★★</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
         <div class="testimonial-text">"Como madre, fue muy difícil aceptar que mi hijo de 11 años viajara para entrenar. La primera visita a APEX cambió todo. Encontré un equipo humano extraordinario, instalaciones impresionantes y, sobre todo, profesionales que se preocupan de verdad por cada niño."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">M</span></div>
@@ -2185,7 +2190,14 @@ ul { list-style: none; }
       </div>
 
       <div class="testimonial-card reveal delay-3">
-        <div class="stars">★★★★★</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
         <div class="testimonial-text">"APEX no te enseña solo a conducir rápido. Te enseña a pensar como un piloto de F1: los datos, la táctica, el físico, la psicología. Cuando llegué a mi primer test en F2, me di cuenta de que estaba mucho mejor preparado que el resto."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">M</span></div>
@@ -2197,8 +2209,15 @@ ul { list-style: none; }
       </div>
 
       <div class="testimonial-card reveal delay-4">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">"La inversión en APEX fue la mejor decisión de nuestra familia. No solo por los resultados deportivos, sino porque mi hijo creció como persona: disciplina, esfuerzo, resilencia. Son valores que lleva para toda la vida, gane o no una carrera de F1."</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
+        <div class="testimonial-text">"La inversión en APEX fue la mejor decisión de nuestra familia. No solo por los resultados deportivos, sino porque mi hijo creció como persona: disciplina, esfuerzo, resiliencia. Son valores que lleva para toda la vida, gane o no una carrera de F1."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">J</span></div>
           <div>
@@ -2209,7 +2228,14 @@ ul { list-style: none; }
       </div>
 
       <div class="testimonial-card reveal delay-5">
-        <div class="stars">★★★★★</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
         <div class="testimonial-text">"Me unieron a un grupo de trabajo con ingenieros reales, acceso a telemetría profesional y sesiones de debriefing que nunca había experimentado fuera de un equipo de F1. El nivel de exigencia de APEX es absolutamente real."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">R</span></div>
@@ -2221,7 +2247,14 @@ ul { list-style: none; }
       </div>
 
       <div class="testimonial-card reveal delay-6">
-        <div class="stars">★★★★★</div>
+        <div class="testimonial-header">
+          <div class="stars">★★★★★</div>
+          <div class="google-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            <span>Google</span>
+            <span class="verified-tag">✓ Verificado</span>
+          </div>
+        </div>
         <div class="testimonial-text">"Llevamos cuatro años en APEX con nuestra hija. Los informes mensuales, las llamadas con los coaches y la honestidad del equipo han hecho que nos sintamos parte del proceso en todo momento. Nunca nos hemos sentido solos en este camino."</div>
         <div class="testimonial-author">
           <div class="author-avatar"><span class="author-initial">S</span></div>
